@@ -4,24 +4,37 @@
 
 PROGRAMMING ASSIGNMENT
 
-1. Input 2 numbers 
-   Choose which number is larger
-   Print the larger number
+1. INPUT first number 
+   INPUT second number  
+   IF first number is greater than second number
+	PRINT "First number"
+   ELSE
+	PRINT "Second Number"
+   END IF
+
 2. SET 1 as the start number
-   WHILE adding 1 to eachnumber from 1
+   WHILE adding 1 to each number from 1
    PRINT that number out
    ENDWHILE
    RETURN all the numbers till 1
+
 3. SET UP a phonebook's array with names
-   if sort through the entry and there's a specific entry that match the name
-   print that name
-   else print no match entry
-4.  function findEntry(entry){
-	var phonebook = ['Brian', 'Becca'];
-	for (var i = 0; i < phonebook.length; i++){
-	if (phonebook[i] === entry) {
-		return "We found you entry:" + " " + entry;
-	  } else {
-		return "We don't have your entry";
-	   }
-	findEntry('Brian');
+   FOR each entry and entry that match the name
+   ENDFOR
+   PRINT that name
+   ELSE print no match entry
+
+4.  var entries = ['Brian', 'Becca'];
+
+function phoneBook(entry) {
+    for(var i=0; i < entry.length; i++) {
+        if(entries[i] === entry) {
+            console.log("Found entry " + entry );
+            return true;
+        }
+    }
+    
+    return "Entry not found";
+}
+
+var entry = phoneBook('Becca');
