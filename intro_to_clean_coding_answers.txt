@@ -72,23 +72,16 @@ END FUNCTION
 refactored:
 
 FUNCTION checkOutCustomer(subTotal, discountRate, paymentType)
-   PRINT "Your total due is: " + subTotal * discountRate + (subTotal * tax)
+   totalDue = subTotal * discountRate + (subTotal * tax)
+   PRINT "Your total due is: " + totalDue
 
- END FUNCTION
- 
-FUNCTION cashPayment(subTotal, discountRate, amount)
- IF paymentType = 'CASH' THEN
+   IF paymentType = 'CASH' THEN
        CALL getPayment RETURNING amount
-       PRINT "Change due: " + amount - subTotal * discountRate + (subTotal * tax)
-
-END FUNCTION
- 
-FUNCTION creditCardPayment(subTotal, discountRate)
- ELSE IF paymentType = 'CREDIT CARD' THEN
+       PRINT "Change due: " + amount - totalDue
+   ELSE IF paymentType = 'CREDIT CARD' THEN
        CALL getPayment RETURNING amount
-       PRINT "Your credit card has been charged: " + subTotal * discountRate + (subTotal * tax)
- END IF
-
+       PRINT "Your credit card has been charged: " + totalDue
+   END IF
 END FUNCTION
 
 b. The following function checks out a book if there are no issues with the guest's account.
@@ -179,9 +172,9 @@ function duplicateEl(myArray)
         {
             for (var j = 0; j < myArray.length; j++) 
             {
-                if (i != j) 
+                if (i !== j) 
                 {
-                    if (myArray[i] == myArray[j]) 
+                    if (myArray[i] === myArray[j]) 
                     {
                         isUnique=true
                     }
