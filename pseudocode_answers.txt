@@ -20,8 +20,8 @@ PROGRAMMING ASSIGNMENT
 
 3. SET UP a phonebook's array with names
    FOR each entry and entry that match the name
-   ENDFOR
    PRINT that name
+   ENDFOR
    ELSE print no match entry
 
 4.  var entries = ['Brian', 'Becca'];
