@@ -69,24 +69,27 @@ FUNCTION checkOutCustomer(subTotal, discountRate, paymentType)
    END IF
 END FUNCTION
 
-```FUNCTION checkOutCustomer(subTotal, discountRate, paymentType)
+refactored:
+
+FUNCTION checkOutCustomer(subTotal, discountRate, paymentType)
    PRINT "Your total due is: " + subTotal * discountRate + (subTotal * tax)
 
-END FUNCTION
-  FUNCTION cashPayment(subTotal, discountRate, amount)
+ END FUNCTION
+ 
+FUNCTION cashPayment(subTotal, discountRate, amount)
  IF paymentType = 'CASH' THEN
        CALL getPayment RETURNING amount
        PRINT "Change due: " + amount - subTotal * discountRate + (subTotal * tax)
 
- END FUNCTION
+END FUNCTION
  
 FUNCTION creditCardPayment(subTotal, discountRate)
  ELSE IF paymentType = 'CREDIT CARD' THEN
        CALL getPayment RETURNING amount
        PRINT "Your credit card has been charged: " + subTotal * discountRate + (subTotal * tax)
-  END IF
+ END IF
 
-END FUNCTION```
+END FUNCTION
 
 b. The following function checks out a book if there are no issues with the guest's account.
 
@@ -162,20 +165,34 @@ function square(arr) {
    } else {
 	return sum;
       }
+}
   square([1,2,3,4,5,6,7]);
 
 7. Duplicate Given an array of integers, find out whether the array contains any duplicate elements. 
 The function should return true if any value appears at least twice in the array, and false if every element is distinct.
 
-function duplicate(arr) {
-    for (i = 0; i < arr.length; i++){
-	for (j = i +1; j < arr.length; j++){
-	  if ( [i] = [j]){
-		return true;
-		} else {
-		return false;
-		}
-     duplicate([1,2,3,4,5]);
+function duplicateEl(myArray) 
+    {
+      isUnique=false
+
+        for (var i = 0; i < myArray.length; i++) 
+        {
+            for (var j = 0; j < myArray.length; j++) 
+            {
+                if (i != j) 
+                {
+                    if (myArray[i] == myArray[j]) 
+                    {
+                        isUnique=true
+                    }
+                }
+            }
+        }
+        return isUnique;
+    }
+    duplicateEl([1,2,3,4,5]);
+
+
 Extra Credit
 8. Anagram An anagram is a word, phrase, or name formed by rearranging the letters of another word. For example, spar 
 can be formed from rasp. Given two strings, stringOne and stringTwo, determine if stringOne is an anagram of stringTwo. 
