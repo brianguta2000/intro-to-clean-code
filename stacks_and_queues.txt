@@ -2,8 +2,7 @@
 
 2. Both of them handle the data flow. Queues are more common.
 
-3. I'd use the LIFO for the UNDO because it'll replace the last element that I've just type
-  - I'd use the FIFO for the REDO because it'll be the first element created and it's the first one to leave. It'd be used to add a change back to the element that's already done.
+3. 3. To implement the UNDO and REDO options in a word processor, I would use the Stack data structure because both UNDO and REDO applies to the very last amongst all actions either popping or pushing the commands onto either stack.
 
 Programming Questions
 
