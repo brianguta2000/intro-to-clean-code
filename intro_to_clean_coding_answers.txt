@@ -149,40 +149,34 @@ Example:
 The square root of 2 is approximately 1.414213562373095.
 
 function square(arr) {
-	let sum = 0;
-   for (var i = 0; i < arr.length; i++){
-	sum += arr[i];
-      }
-   if (sum > 0 && Math.sqrt(sum) % 1 === 0){
-	return Math.sqrt(sum);
-   } else {
-	return sum;
-      }
+   let sum = 0;
+       for (var i = 0; i < arr.length; i++){
+           sum += arr[i];
 }
-  square([1,2,3,4,5,6,7]);
+   if (sum > 0 && Math.sqrt(sum) % 1 === 0){
+       return Math.sqrt(sum);
+}else {
+    return sum;
+  }
+}
+square([1,2,3,4,5,6,7]);
 
 7. Duplicate Given an array of integers, find out whether the array contains any duplicate elements. 
 The function should return true if any value appears at least twice in the array, and false if every element is distinct.
 
-function duplicateEl(myArray) 
-    {
-      isUnique=false
-
-        for (var i = 0; i < myArray.length; i++) 
-        {
-            for (var j = 0; j < myArray.length; j++) 
-            {
-                if (i !== j) 
-                {
-                    if (myArray[i] === myArray[j]) 
-                    {
-                        isUnique=true
-                    }
-                }
-            }
-        }
-        return isUnique;
+function duplicateEl(myArray) {
+    isUnique=false
+        for (var i = 0; i < myArray.length; i++){
+    for (var j = 0; j < myArray.length; j++){
+        if (i !== j){
+            if (myArray[i] === myArray[j]){
+                isUnique=true
     }
+   }
+  }
+}
+    return isUnique;
+}
     duplicateEl([1,2,3,4,5]);
 
 
