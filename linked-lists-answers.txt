@@ -1,0 +1,87 @@
+1. What are some pros and cons of using linked lists instead of arrays?
+
+Pros are they don't use up valuable memory, can be large in size but they can be slow to access what you're looking for.
+
+2. Come up with a real world example of a linked list.
+
+
+Programming Questions
+
+1. The linked list push function should take a value, create a node, and add it to the end of a list. Below is pseudocode for a push function for a singly linked list. However, there is something wrong with it. Submit both an explanation of the bug and a functional implementation of the method.
+
+A: This function will not add the node to the end of the list. 
+Instead it will reorganize the data and always add the new node right behind the head node instead of traversing it.
+
+
+FUNCTION push(element)
+CREATE node
+SET node.value TO element
+SET node.next TO null
+
+IF the head node does not exist
+ THEN SET head to node
+ELSE
+ SET current to head
+ SET current.next to node
+END IF
+END FUNCTION
+
+push(element) {
+    var node = new Node(element);
+    var current;
+
+    if (this.head == null) {
+      this.head = node;
+    } else {
+      current = this.head;
+
+      while (current.next) {
+        current = current.next;
+      }
+      
+      current.next = node;
+    }
+    
+    console.log(LinkedList)
+  }
+
+2. Given an unsorted singly linked list, remove all duplicates from the linked list.
+Example
+Input: a -> c -> d -> d -> a
+Output: a -> c -> d
+
+		function removeDuplicates(llist) {
+			var prev = null;
+			var obj = new Object();
+			var cur = llist.head;
+			while (cur) {
+	            var key = cur.value;
+				if (!obj[key]) {
+					obj[key] = true;
+					prev = cur;
+				} else {
+					prev.next = cur.next;
+	                llist.length--;
+
+				}
+				cur = cur.next;
+			}
+			return llist;
+	}
+3. Given an unsorted singly linked list, reverse it.
+Example
+Input: a -> b -> c -> d
+Output: d -> c -> b -> a
+
+function reverse(llist) {
+			var prev = null;
+			var cur = llist.head;
+			while (cur) {
+				var next = cur.next;
+				cur.next = prev;
+				prev = cur;
+				cur = next;
+			}
+      llist.head = prev;
+			return llist;
+	}
