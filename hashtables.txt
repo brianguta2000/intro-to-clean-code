@@ -1,0 +1,87 @@
+1. What are some pros and cons of using linked lists instead of arrays?
+
+A: Linked lists allow for different elements to be stored in different locations in the computer's memory, which can increase efficiency with larger sets of data as arrays must be stored consecutively. With larger linked lists, the OS can store each node independently, whereas with large arrays, the OS must store all elements together which can decrease efficiency as the OS must find a large enough space to house the entire list together. However, due to the different storage locations of the nodes, it can be inefficient to find a specific node as the OS must access each node in succession, starting at the first node (a.k.a the head), as the location of each node is only stored in the preceding node.
+
+2. Come up with a real world example of a linked list.
+
+A: A phone tree. While somewhat outdated, in order to access everyone in a phone tree, one must start by calling the number you know and getting the number of the next person in the tree. Granted, the phone tree is usually used to deciminate information rather than collect it.
+
+PROGRAMMING QUESTIONS:
+
+1. The linked list push function should take a value, create a node, and add it to the end of a list. Below is pseudocode for a push function for a singly linked list. However, there is something wrong with it. Submit both an explanation of the bug and a functional implementation of the method.
+
+A: This function will not add the node to the end of the list. Instead it will reorganize the data and always add the new node right behind the head node. In order to locate the end node, you must loop through each node until you find the end of the linked list and add the new node there.
+
+  push(element) {
+    var node = new Node(element);
+    var current;
+
+    if (this.head == null) {
+      this.head = node;
+    } else {
+      current = this.head;
+
+      while (current.next) {
+        current = current.next;
+      }
+      
+      current.next = node;
+    }
+    
+    console.log(LinkedList)
+  }
+
+2.
+
+  removeDuplicates(list) {
+    if (!list.head || !list.head.next) {
+      console.log('List is empty or only contains one value');
+      return;
+    }
+    
+    var positionOne;
+    var positionTwo;
+    var positionThree;
+    var val;
+    positionTwo = list.head;
+
+    while (positionTwo) {
+      val = positionTwo.value;
+      positionOne = positionTwo;
+      positionThree = positionOne.next;
+
+      while (positionThree) {
+        if (positionThree.value === val) {
+          positionOne.next = positionThree.next;
+        } else {
+          positionOne = positionThree;
+        }
+        positionThree = positionThree.next;
+      }
+
+      positionTwo = positionTwo.next;
+    }
+  }
+
+3.
+
+  function reverse(list) {
+    var result = null;
+    var stack = [];
+    
+    var current = list.head;
+    while (current) {
+        stack.push(current);
+        current = current.next;
+    }
+    
+    result = stack.pop() || [];
+    current = result;
+    
+    while (current) {
+        current.next = stack.pop();
+        current = current.next;
+    }
+
+    return result;
+  }
