@@ -4,6 +4,7 @@ Pros are they don't use up valuable memory, can be large in size but they can be
 
 2. Come up with a real world example of a linked list.
 
+A: A phone tree. While somewhat outdated, in order to access everyone in a phone tree, one must start by calling the number you know and getting the number of the next person in the tree. Granted, the phone tree is usually used to deciminate information rather than collect it.
 
 Programming Questions
 
@@ -68,6 +69,11 @@ Output: a -> c -> d
 			}
 			return llist;
 	}
+list = new linkedList();
+list.removeDuplicates();
+list.append();
+console.log(list);
+
 3. Given an unsorted singly linked list, reverse it.
 Example
 Input: a -> b -> c -> d
@@ -85,3 +91,4 @@ function reverse(llist) {
       llist.head = prev;
 			return llist;
 	}
+console.log(reverse);
