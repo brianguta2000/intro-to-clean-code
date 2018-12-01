@@ -57,7 +57,7 @@ END FUNCTION
 
 a. The following function prints the subtotal of a customer's transaction and receives payment accordingly.
 
-FUNCTION checkOutCustomer(subTotal, discountRate, paymentType)
+FUNCTION customerPays(subTotal, discountRate, paymentType) //made function name a verb. "Checkout" is not a verb
    PRINT "Your total due is: " + subTotal * discountRate + (subTotal * tax)
 
    IF paymentType = 'CASH' THEN
@@ -69,56 +69,78 @@ FUNCTION checkOutCustomer(subTotal, discountRate, paymentType)
    END IF
 END FUNCTION
 
-refactored:
+ANSWER A: 
 
-FUNCTION checkOutCustomer(subTotal, discountRate, paymentType)
-   totalDue = subTotal * discountRate + (subTotal * tax)
-   PRINT "Your total due is: " + totalDue
+FUNCTION customerPays(subTotal, discountRate, paymentType) //made function name a verb. "Checkout" is not a verb
+   PRINT "Your total due is: " + subTotal * discountRate + (subTotal * tax)
 
    IF paymentType = 'CASH' THEN
        CALL getPayment RETURNING amount
-       PRINT "Change due: " + amount - totalDue
+       PRINT "Change due: " + amount - subTotal * discountRate + (subTotal * tax)
    ELSE IF paymentType = 'CREDIT CARD' THEN
        CALL getPayment RETURNING amount
-       PRINT "Your credit card has been charged: " + totalDue
+       PRINT "Your credit card has been charged: " + subTotal * discountRate + (subTotal * tax)
    END IF
 END FUNCTION
 
-b. The following function checks out a book if there are no issues with the guest's account.
+> b. The following function checks out a book if there are no issues with the guest's account.
+
 
 FUNCTION checkoutBook(book, guest)
  IF guest.accountActive THEN
-  IF NOT(guest.hasOverdueBooks) AND IF guest.outstandingFees = 0 T
-   APPEND book to guest.books
-  SET book.status to "Checked Out"
-   PRINT "Your books have been issued."
-  END IF
+     IF NOT(guest.hasOverdueBooks) THEN
+         IF guest.outstandingFees = 0 THEN
+           APPEND book to guest.books
+           SET book.status to "Checked Out"
+           PRINT "Your books have been issued."
+         END IF
+     END IF
  ELSE
-   PRINT "Unable to check out book."
+     PRINT "Unable to check out book."
  END IF
 END FUNCTION
 
-c. The following class is a code snippet that should support the transactions a customer can perform at an ATM.
+ANSWER B:
+
+
+FUNCTION checkoutBook(book, guest)
+ IF guest.accountActive AND NOT(guest.hasOverdueBooks) AND guest.oustandingFees = 0  THEN
+         APPEND book to guest.books
+         SET book.status to "Checked Out"
+         PRINT "Your books have been issued."
+     END IF
+ ELSE IF guest.hasOverdueBooks = true THEN
+     PRINT "Unable to check out book. You currently have books past due."
+END IF
+ELSE IF NOT(guest.accountActive) THEN
+     PRINT "Your account is inactive. Please reactivate your account to checkout book"
+END IF
+ELSE IF guest.outstandingFees > 0 THEN
+     PRINT "You currently owe" + guest.outstandingFees 
+ END IF
+ELSE PRINT "There is a problem, please see a librarian for further assistance". 
+END IF
+END FUNCTION
+
+
+> c. The following class is a code snippet that should support the transactions a customer can perform at an ATM.
 
 CLASS BankAccount
 
  FUNCTION displayBalance
     PRINT balance
  END FUNCTION
- 
-CLASS depositAmount
+
  FUNCTION deposit(amount)
     SET balance to balance + amount
  END FUNCTION
- 
-CLASS withdrawAmount
+
  FUNCTION withdraw(amount)
      IF balance > amount THEN
        SET balance to balance - amount
      END
  END FUNCTION
- 
-CLASS creditCard
+
  FUNCTION creditCardOffer
      IF NOT(customer.hasCreditCard) THEN
          CALL offerCreditCard
@@ -131,57 +153,70 @@ CLASS creditCard
      END
  END FUNCTION
 
- ....
- ....
- ....
+
 
 END
-Programming Questions
-You may do the following problems in any language of your choice. 
-Use the clean code principles taught in this section while writing the code.
 
-6. Square Given an array of integers, find out whether the sum of the integers is a perfect square. 
-If it is a perfect square, return the square root, otherwise return the sum.
 
-Example:
-[10,1,4,6,1,1,2] returns 5 because the square root of 25 is 5.
-[1,1] returns 2 because 2 is not a perfect square.
-The square root of 2 is approximately 1.414213562373095.
+ANSWER C: 
 
-function square(arr) {
-   let sum = 0;
-       for (var i = 0; i < arr.length; i++){
-           sum += arr[i];
-}
-   if (sum > 0 && Math.sqrt(sum) % 1 === 0){
-       return Math.sqrt(sum);
-}else {
-    return sum;
+CLASS BankAccount
+
+ FUNCTION displayBalance
+    PRINT balance
+ END FUNCTION
+
+ FUNCTION deposit(amount)
+    SET balance to balance + amount
+ END FUNCTION
+
+ FUNCTION withdraw(amount)
+     IF balance > amount THEN
+       SET balance to balance - amount
+     END
+ END FUNCTION
+
+END CLASS
+
+CLASS offer
+
+ FUNCTION creditCardOffer
+     IF NOT(customer.hasCreditCard) THEN
+         CALL offerCreditCard
+     END
+ END FUNCTION
+
+ FUNCTION checkStatus
+     IF NOT(customer.hasCheckingAccount) THEN
+         CALL offerCheckingAccount
+     END
+ END FUNCTION
+
+END CLASS
+
+END
+
+6.
+function Square (intArray) {
+  var sum = intArray.reduce(function(previousVal, currentVal) {
+    return previousVal + currentVal;
+  }, 0);
+  var sqrt = Math.sqrt(sum);
+  if (Number.isInteger(sqrt)) {
+    return sqrt;
   }
+  return sum;
 }
-square([1,2,3,4,5,6,7]);
 
-7. Duplicate Given an array of integers, find out whether the array contains any duplicate elements. 
-The function should return true if any value appears at least twice in the array, and false if every element is distinct.
-
-function duplicateEl(myArray) {
-    isUnique=false
-        for (var i = 0; i < myArray.length; i++){
-    for (var j = 0; j < myArray.length; j++){
-        if (i !== j){
-            if (myArray[i] === myArray[j]){
-                isUnique=true
+7.
+function isDuplicate (intArray) {
+  var thisArray = intArray;
+  var thisInt = thisArray.pop();
+  while (thisInt) {
+    if (thisInt in thisArray) {
+      return true;
     }
-   }
+    thisInt = thisArray.pop();
   }
+  return false;
 }
-    return isUnique;
-}
-    duplicateEl([1,2,3,4,5]);
-
-
-Extra Credit
-8. Anagram An anagram is a word, phrase, or name formed by rearranging the letters of another word. For example, spar 
-can be formed from rasp. Given two strings, stringOne and stringTwo, determine if stringOne is an anagram of stringTwo. 
-Assume that the strings contain only lowercase letters and do not worry about case-sensitivity. 
-Hint: Your first task will be to convert the strings to arrays.
