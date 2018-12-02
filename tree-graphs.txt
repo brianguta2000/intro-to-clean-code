@@ -13,61 +13,101 @@
 Programming Questions
 
 1. To find if a number exists in a binary search tree, start from the head node, if the the number is bigger than the node value, go to the right. Otherwise, go left. Repeatedly comparing the same way until the number is found or the bottom of the tree is reached. If can't go any further, the number does not exist in the tree.
-class binaryTree {
-	Binary btree;
 
-	function binarySearch(value) {
-		var cur = btree.head;
-		while (cur) {
-			if (value == cur.value)
-				return true;
-			else if (value > cur.value)
-				cur = cur.right;
-			else
-				cur = cur.left;
-		}
-		return false;
+class Node {
+	constructor(val) {
+		this.value = val;
+		this.left = null;
+		this.right = null;
 	}
 }
+
+function binaryTree(){
+	this.root = null;
+	
+	this.push = function(val) {
+		var root = this.root;
+		if(!root) {
+			this.root = new Node(val);
+			console.log("New Root")
+			return;
+		}
+
+	var currentNode = root;
+	var newNode = newNode(val);
+	while(currentNode) {
+		if (val < currentNode.value) {
+			if(!currentNode.left) {
+				currentNode.left = newNode;
+				break;
+			} else {
+				currentNode = currentNode.left;
+			}
+				
+		}else {
+			if (!currentNode.right) {
+					currentNode.right = newNode;
+					break;
+				}
+				else {
+					currentNode = currentNode.right;
+				}
+			}
+		}
+	}	
+
+	this.contains = function(val) {
+		var root = this.root;
+		var currentNode = root;
+		var foundValue = false;
+		while(!foundValue && currentNode) {
+			if(val < currentNode.val) {
+				currentNode = currentNode.left;
+			}
+			else if (val > currentNode.val) {
+				currentNode = currentNode.right;
+			}
+			else {
+				foundValue = true;
+			}
+		}
+		return foundValue;	
+	}
+};
+var bst = new BinaryTree();
+bst.push(3);
+bst.push(2);
+bst.push(4);
+bst.push(1);
+bst.push(5);
+console.log(bst)
+bst.findVal(7);
 
 2. To find the distance, the first thing is to look for the root node which is equal or smaller than n1, and equal or bigger than n2. Then add up the distance from root to n1 and root to n2.
 
-class binaryTree {
-	Binary btree;
+function findDistance(root, n1, n2){
+  if (root === null || n1 === n2){
+    return 0;
+  }
+  distance.left = findDistance(root.left, n1, n2);
+  distance.right = findDistance(root.right, n1, n2);
 
-	function distanceFromNode(node, value) {
-		var distance=0;	
-		var cur = node;
-		while (cur) {
-			if (value == cur.value)
-				return distance;
-			if (value > cur.node) {
-				cur = cur.right;
-			} else {
-				cur = cur.left;
-			}
-			distance++;
-		}
-		return -1; // value not found
-	}
-
-	function distanceBetweenNodes(n1, n2) {
-		var n1DistanceFromRoot;
-		var n2DistanceFromRoot;
-		cur = btree;
-		while (cur) {
-			if (n1 <= cur.value && n2 >= cur.value) {
-				n1DistanceFromRoot = distanceFromNode(cur, n1);
-				n2DistanceFromRoot = distanceFromNode(cur, n2);
-				if (n1DistanceFromRoot == -1 || n2DistanceFromRoot == -1)
-					return -1;
-				return n1DistanceFromRoot + n2DistanceFromRoot;
-			}
-			else if (n1 <= cur.value && n2 <= cur.value)
-				cur = cur.left;
-			else if (n1 >= cur.value && n2 >= cur.value)
-				cur = cur.right;
-		}
-	}
-}
-			
+  if (distance.left > 0 && distance.right > 0){
+    return distance.left + distance.right;
+  }
+  if (distance.left > 0 && distance.right > 0){
+    return distance.left;
+  }
+  if (distance.right > 0 && root === n1 || n2){
+    return distance.right;
+  }
+  if (distance.left === 0 && distance.right === 0){
+    if(root !== n1 || n2){
+      return 0;
+    }
+    if (root == n1 || n2){
+      return 1;
+    }
+    } else {
+      return max(distance.left, distance.right) + 1;
+    }
