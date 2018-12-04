@@ -10,7 +10,7 @@
 4. How are hash tables and objects different?
 > Objects keys are usually symbols and numbers, whereas keys in a Hash Table can be any form of data. Also Objects are generally used to store a static number of key-value pairs of all different types, whereas Hash Tables store a dynamic number of pairs that are formatted to match each other.
 
-5. Determine whether to use a hash table of object:
+5. Determine whether to use a hash table of object:,
 
   * List of pets and unique names: Hash Table
   * Name, age and birthday of best friend: Object
@@ -19,6 +19,9 @@
   * The primary and secondary phone numbers for a contact: Object
 
 6. Build a system that allows a sales associate to enter a customer's name, address, and phone number into the system and look up customers using their phone numbers. Store this information in a hash table.
+
+
+Answer>
 
 var hash = (string, max) => {
   var hash = 0;
@@ -81,6 +84,9 @@ console.log(ht.lookup(1000));
 
 7. Build a system that allows a store owner to track their store's inventory using a hash table for storage.
 
+
+Answer> 
+
 var hash = (string,max) =>{
   var hash= 0
   for(var i=0; i<string.length;i++){
@@ -140,7 +146,9 @@ ht.search('Romance')
 
 8. Build a system that allows digital copies of newspapers to be entered and searched by publisher and publication date. Use hash tables to store the necessary data.
 
-//Hash Function
+Answer>
+
+
 let hash = (string, max)=> {
   var hash = 0;
   for(var i=0; i< string.length;i++){
