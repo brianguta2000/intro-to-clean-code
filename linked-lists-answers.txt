@@ -27,116 +27,93 @@ ELSE
 END IF
 END FUNCTION
 
-push(element) {
-    var node = new Node(element);
-    var current;
+class Node{
+  constructor(element){
+    this.value = element;
+    this.next = null;
+  }
+}
 
-    if (this.head == null) {
+class LinkedList{
+  constructor(){
+    this.head = null;
+  }
+
+  push(element){
+    const node = new Node(element);
+    if(this.head === null){
       this.head = node;
     } else {
-      current = this.head;
-
-      while (current.next) {
-        current = current.next;
+      let current = this.head;
+      while(current.next !== null){
+        current = current.next
       }
-      
       current.next = node;
     }
-    
-    console.log(LinkedList)
+  };
+
+  print(){
+    let temp = this.head;
+    let value = '';
+    while(temp){
+      value += temp.value + ', ';
+      temp = temp.next;
+    }
+    console.log(value);
+  };
+
+  removeDuplicates(){
+    if(!this.head || !this.head.next){
+      console.log("No duplicates found");
+      return;
+    }
+
+    let start = this.head;
+    while(start){
+      let data = start.value;
+      let previous = start;
+      let next = previous.next;
+      while(next){
+        if(next.value === data){
+          previous.next = next.next;
+        } else {
+          previous = next;
+        }
+        next = next.next;
+      }
+      start = start.next;
+    }
+  };
+
+  reverse(){
+    if(!this.head || !this.head.next){
+      return;
+    }
+    let node = this.head;
+    let previous = null;
+
+    while(node){
+      let save = node.next;
+      node.next = previous;
+      previous = node;
+      node = save;
+    }
+    this.head = previous
   }
-
-2. Given an unsorted singly linked list, remove all duplicates from the linked list.
-
-
-class LinkedList {
-	constructor() {
-		this.head = null;
-	}
 }
 
-class Node {
-	constructor(val) {
-		this.value = val;
-		this.next = null;
-	}
-}
+var list = new LinkedList;
 
-function removeDuplicates(list){
-  var node = list.head;
-  var sort = [];
-  array.push(list.head.value);
- 
-  while(node.next){
-    if(sort.indexOf(node.next.value) != -1){
-       node.next = node.next.next;
-     } 
-     else {
-       sort.push(node.next.value);
-       node = node.next;
-     }
-  }
-  
-  return list;
-};
+list.push("Dean");
+list.push("Gabby");
+list.push("Gabby");
+list.push("Goose");
+list.push("Chaco");
+list.push("Goose");
 
-var list = new LinkedList();
-var firstNode = new Node('a');
-var secondNode = new Node('c');
-var thirdNode = new Node('d');
-var fourthNode = new Node('d');
-var fifthNode = new Node('a');
+list.print();
+list.removeDuplicates();
+list.print();
+list.reverse();
+list.print();
 
-list.head = firstNode;
-firstNode.next = secondNode;
-secondNode.next = thirdNode;
-thirdNode.next = fourthNode;
-fourthNode.next = fifthNode;
-
-removeDuplicates(list);
-	
-}
-
-
-3. Given an unsorted singly linked list, reverse it.
-Example
-Input: a -> b -> c -> d
-Output: d -> c -> b -> a
-
-
-class LinkedList {
-	constructor() {
-		this.head = null;
-	}
-}
-
-class Node {
-	constructor(val) {
-		this.value = val;
-		this.next = null;
-	}
-}
-
-function reverseList(list) {
-	var current = list.head;
-	var prev = null;
-
-	while(current) {
-		next = current.next;
-		current.next = prev;
-		prev = current;
-		current = next;
-	}
-	return prev;
-}
-
-var list = new LinkedList();
-var node1 = new Node('a');
-var node2 = new Node('b');
-var node3 = new Node('c');
-var node4 = new Node('d');
-
-list.head = node1;
-node1.next = node2;
-node2.next = node3;
-node3.next = node4;
