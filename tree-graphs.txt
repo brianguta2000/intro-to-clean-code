@@ -15,99 +15,111 @@ Programming Questions
 1. To find if a number exists in a binary search tree, start from the head node, if the the number is bigger than the node value, go to the right. Otherwise, go left. Repeatedly comparing the same way until the number is found or the bottom of the tree is reached. If can't go any further, the number does not exist in the tree.
 
 class Node {
-	constructor(val) {
-		this.value = val;
-		this.left = null;
-		this.right = null;
-	}
-}
-
-function binaryTree(){
-	this.root = null;
-	
-	this.push = function(val) {
-		var root = this.root;
-		if(!root) {
-			this.root = new Node(val);
-			console.log("New Root")
-			return;
-		}
-
-	var currentNode = root;
-	var newNode = newNode(val);
-	while(currentNode) {
-		if (val < currentNode.value) {
-			if(!currentNode.left) {
-				currentNode.left = newNode;
-				break;
-			} else {
-				currentNode = currentNode.left;
-			}
-				
-		}else {
-			if (!currentNode.right) {
-					currentNode.right = newNode;
-					break;
-				}
-				else {
-					currentNode = currentNode.right;
-				}
-			}
-		}
-	}	
-
-	this.contains = function(val) {
-		var root = this.root;
-		var currentNode = root;
-		var foundValue = false;
-		while(!foundValue && currentNode) {
-			if(val < currentNode.val) {
-				currentNode = currentNode.left;
-			}
-			else if (val > currentNode.val) {
-				currentNode = currentNode.right;
-			}
-			else {
-				foundValue = true;
-			}
-		}
-		return foundValue;	
-	}
+  constructor(data){
+    this.data = data;
+    this.left = null;
+    this.right = null;
+  };
 };
-var bst = new BinaryTree();
-bst.push(3);
-bst.push(2);
-bst.push(4);
-bst.push(1);
-bst.push(5);
-console.log(bst)
-bst.findVal(7);
 
-2. To find the distance, the first thing is to look for the root node which is equal or smaller than n1, and equal or bigger than n2. Then add up the distance from root to n1 and root to n2.
+class BinarySearchTree {
+  constructor(){
+    this.root = null;
+  };
 
-function findDistance(root, n1, n2){
-  if (root === null || n1 === n2){
-    return 0;
-  }
-  distance.left = findDistance(root.left, n1, n2);
-  distance.right = findDistance(root.right, n1, n2);
+  getRootNode(){
+    return this.root
+  };
 
-  if (distance.left > 0 && distance.right > 0){
-    return distance.left + distance.right;
-  }
-  if (distance.left > 0 && distance.right > 0){
-    return distance.left;
-  }
-  if (distance.right > 0 && root === n1 || n2){
-    return distance.right;
-  }
-  if (distance.left === 0 && distance.right === 0){
-    if(root !== n1 || n2){
-      return 0;
-    }
-    if (root == n1 || n2){
-      return 1;
-    }
+  insert(data){
+    var newNode = new Node(data);
+    if(this.root === null){
+      this.root = newNode;
     } else {
-      return max(distance.left, distance.right) + 1;
+      this.insertNode(this.root, newNode);
     }
+  };
+
+  insertNode(node, newNode){
+    if(newNode.data < node.data){
+      if(node.left === null){
+        node.left = newNode;
+      } else{
+        this.insertNode(node.left, newNode)
+      }
+    } else{
+      if(node.right === null){
+        node.right = newNode;
+      } else{
+        this.insertNode(node.right, newNode)
+      }
+    }
+  }
+
+  contains(data){
+    let current = this.root;
+    while(current){
+      if(current.data === data){
+        return true;
+      } else if(current.data > data){
+        current = current.left;
+      } else{
+        current = current.right;
+      }
+    }
+    return false;
+  };
+
+  findDistance(root, n1, n2){
+    let lca = this.findLCA(root, n1, n2);
+    let distance1 = this.findLevel(lca, n1);
+    let distance2 = this.findLevel(lca, n2);
+
+    return distance1 + distance2;
+  }
+
+  findLevel(root, node){
+    if(root === null){
+      return -1;
+    }
+    let distance = -1;
+    if((root.data === node) ||
+      (distance = this.findLevel(root.left, node)) >= 0 || (distance = this.findLevel(root.right, node)) >= 0){
+        return distance + 1;
+    }
+    return distance;
+  }
+
+  findLCA(root, n1, n2){
+    if(root === null){
+      return null;
+    } else if(root.data === n1 ||root.data === n2){
+      return root;
+    }
+    let left = this.findLCA(root.left, n1, n2);
+    let right = this.findLCA(root.right, n1, n2);
+    if(left && right){
+      return root;
+    } else if(left !== null){
+      return left;
+    } else{
+      return right;
+    }
+  };
+};
+
+let bst = new BinarySearchTree();
+
+bst.insert(8);
+bst.insert(3);
+bst.insert(10);
+bst.insert(1);
+bst.insert(6);
+bst.insert(4);
+bst.insert(7);
+bst.insert(14);
+bst.insert(13);
+console.log(bst.contains(1));
+console.log(bst.findLCA(bst.root, 4,7));
+console.log(bst.findLevel(bst.root, 3));
+console.log(bst.findDistance(bst.root, 7, 13));
