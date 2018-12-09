@@ -1,25 +1,42 @@
-1. Time complexity is a function that estimates how long it takes an algorithm to run in relate to the amount of input.
+1. What is time complexity and what is its relation to algorithms?
+A: Time complexity is a calculation of the time it takes for an algorithm
+   or function to execute.
 
-2. Runtime is the time that an algorithm takes to run, and can be used with time complexity interchangeably.
+2. What is runtime?
+A: Runtime is the same as time complexity, and is the physical time it
+   takes for an algorithm to execute.
 
-3. It's the sum of the time that each instruction of an algorithm takes to run.
+3. How is the runtime of an algorithm calculated?
+A: Runtime is calculated by counting the number of operations performed
+   by the algorithm, supposing that each operation takes a fixed amount
+   of time.
 
-4. The 6 algorithm growth rates, in order of fastest to slowest, are
-  constant: O(1)
-  logarithm: O(log n)
-  linear: O(n)
-  log-linear: O(n log n)
-  quadratic: O(n^2)
-  exponential: O(2^n)
-  factorial: O(n!)
+4. Name the six types of algorithm growth rates we saw in this checkpoint
+   and list them in order of most efficient to least efficient. Now Google
+   another algorithmic growth rate not covered and place it in the correct
+   spot in your list.
+A. Constant Growth Rate, Logarithmic Growth Rate, Linear Growth Rate,
+   Log-Linear Growth Rate, Quadratic Growth Rate, Exponential Growth Rate.
 
-5. In a coffee shop, when there's only 1 staff, it takes n time for each customer visits and makes a purchase. When there are m staffs, it takes n/m time. Throw away 1/m in front of n, the time complexity for a coffee shop to serve coffee for all customers is O(n).
+   Cubic Growth Rate was not covered, and would go between Quadratic and
+   Exponential.
 
-6. O(n)
+5. Choose one of the algorithmic growth rates from the last question and
+   make a comparison to a real-life situation.
+A: A snowball rolling down a hill could be an example of exponential growth.
+   when it starts out it doesn't grow in size very quickly, but as it gets
+   larger, it also grows much faster. The bigger it gets, the more snow it
+   gathers.
 
-7. O(n^2)
+6. Determine the time complexity of the following snippet of code. It is
+   commonly known as a linear search.
+A: 0(n)
 
-8. O(2^n)
+7. Determine the time complexity of the following snippet of code.
+A: 0(n^2)
 
-9. Most time efficient is O(n) the linear growth rate.
+8. Determine the time complexity of the following snippet of code. It is
+   commonly known as the Fibonacci sequence.
+A: 0(2^n)
 
+9. The first one, with a time complexity of 0(n) is the most efficient.
