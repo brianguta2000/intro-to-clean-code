@@ -1,36 +1,138 @@
-1.
-Making coffee
-  a. Pour grounded coffee into the coffee machine
-  b. Fill water
-  c. Set and start the coffee machine
-  d. Wait until the coffee machine signals a completion
-  e. Pour coffee into a mug
-  f. Add sugar and cream, and stir
+1. Using proper pseudo-code, describe the following primitive algorithms:
 
-Washing dishes
-  a. Place a sink drain stopper to the sink
-  b. Add dish soap
-  c. Turn on water faucet
-  d. Add dishes and soak about 10 minutes
-  e. Use a sponge to wash off oil and food residues from dishes and put aside the washed dishes
-  f. Remove the sink drain stopper
-  g. Rinse dishes under slow running water until no more dish soap on the dishes
-  h. Put aside the dishes and let dry
+A: Making Coffee:
+     
+	GET coffee grounds from cupboard
+     
+	IF coffee basket has old grounds
+       
+		CLEAR coffee basket of any previous grounds
+     
+	END IF
+     
+	IF coffee pot is dirty
+       
+		WASH coffee pot
+     
+	END IF
+     
+	PUT coffee filter in basket
+     
+	WHILE basket is not full
+       
+		PUT coffee grounds in basket
+     
+	END WILE
+     
+	PUT basket in coffee maker
+    
+	WHILE coffee maker is not full
+      
+		FILL coffee maker with water
+     
+	END WHILE
+     
+	PUT coffee pot into coffee maker
+     
+	START brew cycle
 
-Defrosting frozen meat
-  a. Find out the weight of the frozen meat
-  b. Place meat onto a plate
-  c. Place the place in the center of the microwave oven
-  d. Press the defrost button
-  e. Wait for the prompt for what kind of food
-  d. Enter 'Meat'
-  f. Wait for the prompt for how many pounds of meat
-  g. Enter the weight
-  h. Press the start button
-  i. When the microwave oven stops, check the readiness of the meat
-  j. Repeat step d to i, if needed
+   
 
-2. Three companies who created an algorithm that made them successful are Waze's fastest distance algorithm, instagram's sorting algorithm, and twitter's timeline algorithm.
-For each of the 3 cases, they are the most efficient algorithm for each achieves the result within the shortest amount of time.
+B: Washing Dishes:
+     
+	START hot water
+     
+	GET sponge
+     
+	ADD soap to sponge
+    
+	FOR each dirty dish
+       
+		SCRUB dish with sponge
+      
+		RINSE dish in water
+      
+		PUT dish in drying rack
+     
+	END FOR
 
-3. An efficient algorithm must obtain clear steps of instruction that would accomplish a goal within a finite amount of time.
+   
+
+C: Making Tea:
+     
+	GET tea bag from cupboard
+     
+	GET mug from cupboard
+    
+	PUT tea bag in mug
+     
+	GET kettle from cupboard
+    
+	WHILE kettle is not full
+       
+		FILL kettle with water
+    
+	END WHILE
+     
+	PLACE kettle on stove
+     
+	LIGHT burner on stove
+     
+	WHILE water is not boiling
+      
+		HEAT water in kettle
+     
+	END WHILE
+     
+	TURN OFF burner
+     
+	POUR water into mug
+
+
+
+2. As with the knot algorithm, there may be more than one way to solve the
+ problem. 
+It is essential to try to pick the best algorithm for a situation.
+   
+
+Name three companies who created an algorithm that made them successful,
+   
+e.g., Google's search algorithm. It doesn't need to be a tech example (such
+ as a recipe or manufacturing a product). 
+Google's algorithm produces more
+ relevant results than other search engines; what about each of your cases
+   
+make them stand out?
+
+
+A: Match.com's algorithm for finding compatibility between 2 people seems to have
+ made them very successful. 
+They are the longest standing dating site I can think
+ of, so it must be working well!
+
+   
+
+B: Pinterest's algorithm for providing content based on a users interest and past
+ likes is also very successful. 
+It has way more users than any other similar platform,
+ so it must do a better job determining what it's users want to see.
+
+  
+ 
+C: Netflix uses an algorithm to suggest movies and TV shows you might like based on
+ your content history. 
+They have a giant collection, and do a great job of curating
+ lists of content similar to that.
+
+
+
+3. Hypothesize about what constitutes an efficient algorithm versus an inefficient
+ algorithm.
+
+
+A: An efficient algorithm should solve a problem as quickly and with as little work
+ as possible. 
+Obviously they should also find an accurate solution. It would also
+ help if the logic was clean and easy to follow, 
+so that the algorithm is easy to
+ update and maintain.
