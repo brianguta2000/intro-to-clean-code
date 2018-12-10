@@ -1,43 +1,70 @@
-1. Iteration is the technique of using a loop to repeat a process, and recursion is a procedure calls itself with parameters moving toward one of the base cases. Iteration works better when an algorithm requires a pass over a collection and recursion is better when an algorithm can be defined as a combination of sub-results starting with known cases. In some cases, one technique seems to work better than the other, but takes longer runtime.
+1. Define and compare recursion and iteration.
 
-2. Factorial, Fibonacci, BinarySearch, MergeSort, and QuickSort are algorithms implemented by recursion.
+A: Recursion and iteration are both methods used to make a function repeat
+   itself. Recursion is a procedure in which the function literally calls
+   itself again with an adjusted parameter. Iteration achieves repetition
+   by using loops.
 
-3. Use recursion when a problem can be broken down into smaller problems until the problems can be solved trivially and is with base cases. For example, to find the height of a tree, you repeatedly visit each node until there's no more left node and/or right node on it. The maximum height between the right and left node would return to the level above.
-When it's only necessary to run straight through a data set, it's better not to use recursion because it complicated the algorithm and cause a performance concern in some cases. For example, finding the maximum of an array only requires a single iteration of the array. It's simple and straight forward to use iteration.
+2. Name five algorithms that are commonly implemented by recursion.
 
-4. Factorial: Both recursion and iteration have O(n), but recursion technique calls factorial(1) when n is down to 1 whereas iteration can skip the handling of base cases by initializing result to 1 and stop the iteration when n is down to 2.
-Maximum: Recursion looks much more complicated and is a longer algorithm when both techniques takes the same time complexity. Iteration is a much more straight forward solution.
-Fibonacci: the recursive implementation seems more straight forward, but the tendency to repeat calculations introduces a performance concern that outweighs the cost of the slightly more complex iterative implementation.
+A. Binary Search, Quick Sort, Factorial, Fibonacci Sequence, BFS and DFS.
 
-5.
-function numOfItemInArray(ar) {
-  if (ar.length) {
-    for (var i=0; i < ar.length; i++) {
-      return ar.length + numOfItemInArray(ar[i]);
-    }
+3. When should you use recursion, and when should you avoid recursion? Give
+   examples for each.
+
+A: Recursion is best used for problems that can be broken into treelike
+   structures. With a balanced treelike structure, recursion will make things
+   faster and cleaner. Problems like binary search trees, merge sort, and
+   quick sort are great for recursion. Recursion, however, does carry a risk
+   of causing a stack overflow, because it relies on the call stack to store
+   data. Loops do not have this probelem, and are also usually faster. Fibonacci
+   sequence for example, has a time complexity of 0(2^n) recursively, and 0(n)
+   iteratively.
+
+4. Compare the recursive and iterative solutions to the three algorithms from
+   the checkpoint (factorial, maximum, and fibonacci). What is similar, and
+   what is different?
+
+A: Both solutions contain at least one baseline so that they avoid infinte loops.
+   Obviously, the difference is that the recursive solutions call the given function
+   again with adjusted arguments, and the iterative solutions use loops and conditions
+   to solve a problem.
+
+5. Given a multi-dimensional collection (such as an array) where the number of
+   dimensions is unknown, write a recursive algorithm to count the number of
+   items in the entire collection.
+
+A: function countElements(array){
+  if(array.length){
+    return 1 + countElements(array.slice(1))
+  } else {
+    return 0;
   }
-  return 0;
 }
 
-6.
-function isPalindrome(str) {
-  if (str.length < 2)
-    return true;
-  if (str[0] !== str[str.length-1])
-    return false;
-  return isPalindrome(str.substr(1, str.length-2));
-}
+countElements([1,2,3,4,5,6]);
 
-7. I think Google tries to demonstrate what recursion is. By displaying 'Did you mean: recursion' with the word recursion being a link, which when clicked, to display the same page again, it shows you what recursion means in place.
-© 2018 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
+6. A palindrome is a word or phrase whose spelling is the same either direction
+  (e.g., racecar). Write a recursive algorithm to determine if a given word or
+  phrase is a palindrome.
+
+A: function palindrome(str) {
+ var re = /[/W_]/g;
+ str = str.toLowerCase().replace(re, '');
+ var len = str.length;
+ for (var i = 0; i < len/2; i++) {
+   if (str[i] !== str[len - 1 - i]) {
+       return false;
+   }
+ }
+ return true;
+}
+palindrome('Racecar');
+
+7. Google Easter Egg: Google the term "recursion". Google will prompt you with
+   "Did you mean: recursion". Explain why this behavior exhibits properties of
+   recursion.
+
+A: Recursion is the repeated application of a recursive procedure, so continually
+   hitting the "did you mean recursion?" link, is an example of that. It's almost
+   like an infinite loop.
