@@ -1,0 +1,59 @@
+1. What data types do each of these values represent?
+A: 1- String
+   2- integer
+   3- date
+   4- float
+   5- float
+
+2. Explain when a database would be used. Explain when a text file would be
+   used.
+A: You should use a database when you want the ability to query data efficiently,
+   when you have a large amount of data to maintain, and if multiple people will
+   be accessing the data, especially at the same time. A text file would suffice
+   when using a small amount of data that only you will be working with, no other
+   users
+
+3. Describe one difference between SQL and other programming languages.
+A: SQL is a declarative language, not a procedural. You don't have to
+   define algorithms, you just tell the database what you want and it will
+   get the data for you
+
+4. In your own words, explain how the pieces of a database system fit together
+   at a high level.
+A: Data is stored in tables that are made of Columns (list column name, data
+   type, and other column attributes), rows (contain the actual data for the
+   columns), and data. Using SQL we can create tables, add data to them, update
+   them, and delete data.
+
+5. Explain the meaning of table, row, column, and value.
+A: A table is the culmination of all of the values, rows, and columns.
+   Each column represents the type of data represented, and a name for the data.
+   Each row contains the actual data inside of each column for each record.
+   Values are the actual data for the corresponding row and column.
+
+6. List three data types that can be used in a table.
+A: String, Integer, Float
+
+7. Given this payments table, provide an English description of the following
+   queries and include their results.
+
+A: -I'm looking for the date and amount of all payments.
+    returns 2016-05-01: 1500.00  , 2016-05-10: 37.00 , 2016-05-15: 124.93 ,2016-05-23: 54.72
+   -I'm looking for the amount of all payments that are greater than 500
+    returns 1500.00
+   -I'm looking for all the data for payments whose payee is Mega Foods
+    returns 2016-05-15, Mega Foods, 124.93, Groceries
+
+8. Given this users table, write SQL queries using the following criteria and
+   include the output:
+A: - SELECT email, signup
+     FROM users
+     WHERE name = 'DeAndre Data';
+
+   - SELECT userid
+     FROM users
+     WHERE email = 'aleesia.algorithm@uw.edu';
+
+   - SELECT *
+     FROM users
+     WHERE userid = 4;
