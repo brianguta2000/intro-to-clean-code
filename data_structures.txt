@@ -1,0 +1,40 @@
+1.
+b) var arr = ["Vivian", "Ava", "Josh", "Patrick", "Mike"];
+    arr.push('Mary');
+    console.log(arr);
+
+c) var arr = ["Vivian", "Ava", "Josh", "Patrick", "Mike",'Mary'];
+   for(var i = 0; i < arr.length; i++){
+     if (arr[i] === 'Josh'){
+       console.log (i);
+     }
+   }
+or
+var arr = ["Vivian", "Ava", "Josh", "Patrick", "Mike",'Mary'];
+     arr.indexOf('Josh');
+
+d) var arr = ["Vivian", "Ava", "Josh", "Patrick", "Mike",'Mary'];
+   for(var i = 0; i < arr.length; i++){
+     if (arr.includes('Emily')){
+       console.log ('We found Emily');
+     } else {
+       console.log('There is no Emily')
+     }
+   }
+
+or 
+   var arr = ["Vivian", "Ava", "Josh", "Patrick", "Mike",'Mary'];
+	arr.indexOf('Emily') //it will return -1
+
+e)  var arr = ["Vivian", "Ava", "Josh", "Patrick", "Mike",'Mary'];
+    arr.splice(1,0,'Melissa');
+   console.log(arr)
+
+f) var arr = ["Vivian", "Ava", "Josh", "Patrick", "Mike",'Mary'];
+    arr.splice(3,1);
+   console.log(arr)
+
+2. Another real-world example that we can use data structure is things that we prepare for a trip
+
+3. Developers can add things that we need or delete things that we don't need in an array.
+
