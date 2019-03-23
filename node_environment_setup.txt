@@ -1,0 +1,28 @@
+1> NPM is a software library and also a software package manager as well as an installer. The name npm (Node Package Manager) stems from when npm first was created as a package manager for Node.js.
+
+All npm packages are defined in files called package.json. npm can manage dependencies.
+
+npm can (in one command line) install all the dependencies of a project.
+
+
+
+2> A file that communicates to NPM about how an application is sturctured.
+
+3. {
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "Demo for node.js setup.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "demo"
+  ],
+  "author": "Brian Guta",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "hapi": "^18.1.0"
+  }
+}
